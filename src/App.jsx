@@ -14,6 +14,7 @@ export function Home() {
     return (
         <>
             <h1>Home</h1>
+            <p>Check out information about the people, planets, and films of Star Wars!</p>
             <p><Link to="/people">People</Link></p>
             <p><Link to="/planets">Planets</Link></p>
             <p><Link to="/films">Films</Link></p>
@@ -32,6 +33,7 @@ export function Planets() {
 export function Films() {
     return  <>
     <h1>Films</h1>
+    <SideBar></SideBar>
     <ul>
         {films.map(film => (
             <li key={film.episode_id}>
@@ -109,7 +111,22 @@ export function PeopleItem() {
     )
 }
 
-export function FilmItems() {
+export function PlanetItem() {
+    const params = useParams()
+    const [ searchParams, setSearchParams ] = useSearchParams()
+
+    const planetItem = Planet[params.planetItem]
+
+    return (
+        <>
+            <h2>{planetItem.name}</h2>
+            <p>{planetItem.climate}</p>
+            <ul>{planetItem.residents}</ul>
+        </>
+    )
+}
+
+export function FilmItem() {
     const { id } = useParams()
     const film = filmsData[id]
     return (
