@@ -3,7 +3,6 @@ import {
     NavLink,
     Outlet,
     useParams,
-    userSearchParams,
     useRouteError
 } from 'react-router-dom'
 
@@ -37,12 +36,42 @@ export function Root(props) {
             <nav>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/people">People</NavLink></li>
-                    <li><NavLink to="/planets">Planets</NavLink></li>
-                    <li><NavLink to="/films">Films</NavLink></li>
+                    <li><NavLink to="/people"
+                    className={({ isActive }) =>
+                    isActive ? "active" : ""
+                    }
+                    >
+                    People</NavLink></li>
+                    <li><NavLink to="/planets"
+                    className={({ isActive }) =>
+                    isActive ? "active" : ""
+                    }
+                    >
+                    Planets</NavLink></li>
+                    <li><NavLink to="/films"
+                    className={({ isActive }) =>
+                    isActive ? "active" : ""
+                    }
+                    >
+                    Films</NavLink></li>
                 </ul>
             </nav>
             <main>{children || <Outlet />}</main>
+        </>
+    )
+}
+
+export function PeopleItem() {
+    const params = useParams()
+    const [ searchParams, setSearchParams ] = useSearchParams()
+
+    const peopleItem = People[params.peopleItem]
+
+    return (
+        <>
+            <h2>{peopleItem.name}</h2>
+            <p>{peopleItem.homeworld}</p>
+            <ul>{peopleItem.films}</ul>
         </>
     )
 }
