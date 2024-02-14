@@ -6,6 +6,10 @@ import {
     useRouteError
 } from 'react-router-dom'
 
+import peopleData from './data/people.json'
+import filmsData from './data/films.json'
+import planetsData from './data/planets.json'
+
 export function Home() {
     return (
         <>
@@ -26,7 +30,16 @@ export function Planets() {
 }
 
 export function Films() {
-    return <h1>Films</h1>
+    return  <>
+    <h1>Films</h1>
+    <ul>
+        {films.map(film => (
+            <li key={film.episode_id}>
+                <Link to={`/films/${film.episode_id}`}>{film.title}</Link>
+            </li>
+        ))}
+    </ul>
+</>
 }
 
 export function Root(props) {
@@ -61,6 +74,26 @@ export function Root(props) {
     )
 }
 
+export function Sidebar() {
+    const films = Object.values(filmsData)
+    const planets = Object.values(planetsData)
+    const people = Object.values(peopleData)
+    return (
+        <>
+            <aside>
+                <ul>
+                    {Object.keys(sidebar).map(item => (
+                        <li key={id}>
+                        <NavLink to={`/films/${film.episode_id}`}>{film.title}</NavLink>
+                    </li>
+                    ))}
+                </ul>
+            </aside>
+            <div><Outlet /></div>
+        </>
+    )
+}
+
 export function PeopleItem() {
     const params = useParams()
     const [ searchParams, setSearchParams ] = useSearchParams()
@@ -72,6 +105,23 @@ export function PeopleItem() {
             <h2>{peopleItem.name}</h2>
             <p>{peopleItem.homeworld}</p>
             <ul>{peopleItem.films}</ul>
+        </>
+    )
+}
+
+export function FilmItems() {
+    const { id } = useParams()
+    const film = filmsData[id]
+    return (
+        <>
+            <h2>{film.title}</h2>
+            <p>Episode: {film.episode_id}</p>
+            <p>Director: {film.director}</p>
+            <p>Producer: {film.producer}</p>
+            <p>Release Date: {film.release_date}</p>
+            <p>Opening Crawl: {film.opening_crawl}</p>
+            <p>Characters: {film.characters.join(', ')}</p>
+            <p>Planets: {film.planets.join(', ')}</p>
         </>
     )
 }
