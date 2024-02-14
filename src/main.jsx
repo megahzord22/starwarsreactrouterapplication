@@ -8,7 +8,8 @@ import {
     People,
     Films,
     Planets, 
-    ErrorPage
+    ErrorPage,
+    Root
 } from './App'
 import './index.css'
 
@@ -28,6 +29,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <RouterProvider router={router} />
-        {/* <App /> */}
     </React.StrictMode>,
 )
