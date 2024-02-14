@@ -7,7 +7,10 @@ import {
     Films,
     Planets, 
     ErrorPage,
-    Root
+    Root,
+    PeopleItem,
+    FilmItem,
+    PlanetItem
 } from './App'
 import './index.css'
 
@@ -18,9 +21,14 @@ const router = createBrowserRouter([
         errorElement: <Root><ErrorPage /></Root>,
         children: [
             { index: true, element: <Home /> },
-            { path: "people", element: <People /> },
-            { path: "planets", element: <Planets /> },
-            { path: "films", element: <Films /> }
+            { path: "people", 
+            element: <People />,
+            children: [{path: 'id', element: <PeopleItem></PeopleItem>}] },
+            { path: "planets", 
+            element: <Planets />,
+            children: [{path: 'id', element: <PlanetItem></PlanetItem>}] },
+            { path: "films", element: <Films />,
+            children: [{path: 'id', element: <FilmItem></FilmItem>}] }
         ]
     },
 ])
