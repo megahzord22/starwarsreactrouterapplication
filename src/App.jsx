@@ -106,8 +106,8 @@ export function PeopleItem() {
 
     return (
         <>
-            <h2>{peopleItem.name}</h2>
-            <p>{peopleItem.homeworld}</p>
+            <h2>{people.name}</h2>
+            <p>{people.homeworld}</p>
             <p>{people.films.join(', ')}</p>
         </>
     )
