@@ -23,12 +23,12 @@ const router = createBrowserRouter([
             { index: true, element: <Home /> },
             { path: "people", 
             element: <People />,
-            children: [{path: 'id', element: <PeopleItem></PeopleItem>}] },
+            children: [{path: ':id', element: <PeopleItem></PeopleItem>}] },
             { path: "planets", 
             element: <Planets />,
-            children: [{path: 'id', element: <PlanetItem></PlanetItem>}] },
+            children: [{path: ':id', element: <PlanetItem></PlanetItem>}] },
             { path: "films", element: <Films />,
-            children: [{path: 'id', element: <FilmItem></FilmItem>}] }
+            children: [{path: ':id', element: <FilmItem></FilmItem>}] }
         ]
     },
 ])

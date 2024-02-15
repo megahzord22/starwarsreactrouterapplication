@@ -23,25 +23,48 @@ export function Home() {
 }
 
 export function People() {
-    return <h1>People</h1>
+    return <>
+    <aside>
+        <ul>
+            {Object.keys(peopleData).map(item => (
+                <li key={item}>
+                <NavLink to={`/people/${peopleData[item].name}`}>{peopleData[item].name}</NavLink>
+            </li>
+            ))}
+        </ul>
+    </aside>
+    <div><Outlet /></div>
+</>
 }
 
 export function Planets() {
-    return <h1>Planets</h1>
+    return <>
+    <aside>
+        <ul>
+            {Object.keys(planetsData).map(item => (
+                <li key={item}>
+                <NavLink to={`/planets/${planetsData[item].name}`}>{planetsData[item].name}</NavLink>
+            </li>
+            ))}
+        </ul>
+    </aside>
+    <div><Outlet /></div>
+</>
 }
 
 export function Films() {
     return  <>
-    <h1>Films</h1>
-    <SideBar></SideBar>
-    <ul>
-        {films.map(film => (
-            <li key={film.episode_id}>
-                <Link to={`/films/${film.episode_id}`}>{film.title}</Link>
-            </li>
-        ))}
-    </ul>
-</>
+            <aside>
+                <ul>
+                    {Object.keys(filmsData).map(item => (
+                        <li key={item}>
+                        <NavLink to={`/films/${filmsData[item].episode_id}`}>{filmsData[item].title}</NavLink>
+                    </li>
+                    ))}
+                </ul>
+            </aside>
+            <div><Outlet /></div>
+        </>
 }
 
 export function Root(props) {
@@ -76,52 +99,29 @@ export function Root(props) {
     )
 }
 
-export function Sidebar() {
-    const films = Object.values(filmsData)
-    const planets = Object.values(planetsData)
-    const people = Object.values(peopleData)
-    return (
-        <>
-            <aside>
-                <ul>
-                    {Object.keys(sidebar).map(item => (
-                        <li key={id}>
-                        <NavLink to={`/films/${film.episode_id}`}>{film.title}</NavLink>
-                    </li>
-                    ))}
-                </ul>
-            </aside>
-            <div><Outlet /></div>
-        </>
-    )
-}
 
 export function PeopleItem() {
-    const params = useParams()
-    const [ searchParams, setSearchParams ] = useSearchParams()
-
-    const peopleItem = People[params.peopleItem]
+    const { id } = useParams()
+    const people = peopleData[id]
 
     return (
         <>
             <h2>{peopleItem.name}</h2>
             <p>{peopleItem.homeworld}</p>
-            <ul>{peopleItem.films}</ul>
+            <p>{people.films.join(', ')}</p>
         </>
     )
 }
 
 export function PlanetItem() {
-    const params = useParams()
-    const [ searchParams, setSearchParams ] = useSearchParams()
-
-    const planetItem = Planet[params.planetItem]
+    const { id } = useParams()
+    const planet = planetsData[id]
 
     return (
         <>
-            <h2>{planetItem.name}</h2>
-            <p>{planetItem.climate}</p>
-            <ul>{planetItem.residents}</ul>
+            <h2>{planet.name}</h2>
+            <p>Climate: {planet.climate}</p>
+            <p>Residents: {planet.residents.join(', ')}</p>
         </>
     )
 }
