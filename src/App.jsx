@@ -13,7 +13,6 @@ import planetsData from './data/planets.json'
 export function Home() {
     return (
         <>
-            {/* <h1>Home</h1> */}
             <div className="home">
             <p>Check out information about the people, planets, and films of Star Wars!</p>
             <p><Link to="/people">People</Link></p>
@@ -26,8 +25,8 @@ export function Home() {
 
 export function People() {
     return <>
-    <div className="data">
-    <aside className="side-nav">
+    <div>
+    <aside>
         <ul>
                     {Object.keys(peopleData).map(item => (
                         <li key={item}>
@@ -37,14 +36,14 @@ export function People() {
                 </ul>
     </aside>
     </div>
-    <div className="content"><Outlet /></div>
+    <div><Outlet /></div>
 </>
 }
 
 export function Planets() {
     return <>
-    <div className="data">
-    <aside className="side-nav">
+    <div>
+    <aside>
         <ul>
                     {Object.keys(planetsData).map(item => (
                         <li key={item}>
@@ -54,14 +53,14 @@ export function Planets() {
                 </ul>
     </aside>
     </div>
-    <div className="content"><Outlet /></div>
+    <div><Outlet /></div>
 </>
 }
 
 export function Films() {
     return  <>
-    <div className="data">
-            <aside className="side-nav">
+    <div>
+            <aside>
                 <ul>
                     {Object.keys(filmsData).map(item => (
                         <li key={item}>
@@ -70,7 +69,7 @@ export function Films() {
                     ))}
                 </ul>
             </aside>
-            <div className="content"><Outlet /></div>
+            <div><Outlet /></div>
             </div>
         </>
         
@@ -80,10 +79,10 @@ export function Root(props) {
     const { children } = props
     return (
         <>
-        <div className="heading">
+        <div>
             <h1>Star Wars</h1>
         </div>
-        <div className="root-nav">
+        <div>
             <nav>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
@@ -146,7 +145,6 @@ export function PlanetItem() {
 
     return (
         <>
-        <h1>debugging</h1>
             <h2>{planet.name}</h2>
             <p>Rotation: {planet.rotation_period}</p>
             <p>Orbit: {planet.orbital_period}</p>
