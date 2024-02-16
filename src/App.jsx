@@ -25,8 +25,8 @@ export function Home() {
 
 export function People() {
     return <>
-    <div>
-    <aside>
+    <div className="container">
+    <aside className="sidebar">
         <ul>
                     {Object.keys(peopleData).map(item => (
                         <li key={item}>
@@ -35,15 +35,15 @@ export function People() {
                     ))}
                 </ul>
     </aside>
+    <div className="content"><Outlet /></div>
     </div>
-    <div><Outlet /></div>
 </>
 }
 
 export function Planets() {
     return <>
-    <div>
-    <aside>
+    <div className="container">
+    <aside className="sidebar">
         <ul>
                     {Object.keys(planetsData).map(item => (
                         <li key={item}>
@@ -52,15 +52,15 @@ export function Planets() {
                     ))}
                 </ul>
     </aside>
+    <div className="content"><Outlet /></div>
     </div>
-    <div><Outlet /></div>
 </>
 }
 
 export function Films() {
     return  <>
-    <div>
-            <aside>
+    <div className="container">
+            <aside className="sidebar">
                 <ul>
                     {Object.keys(filmsData).map(item => (
                         <li key={item}>
@@ -69,7 +69,7 @@ export function Films() {
                     ))}
                 </ul>
             </aside>
-            <div><Outlet /></div>
+            <div className="content"><Outlet /></div>
             </div>
         </>
         
@@ -80,12 +80,9 @@ export function Root(props) {
     return (
         <>
         <div>
-            <h1>Star Wars</h1>
-        </div>
-        <div>
             <nav>
                 <ul>
-                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/">Star Wars</NavLink></li>
                     <li><NavLink to="/people"
                     className={({ isActive }) =>
                     isActive ? "active" : ""
