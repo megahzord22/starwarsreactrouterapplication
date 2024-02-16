@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
 
-
 img {
     width: 300px;
 }
@@ -25,29 +24,28 @@ nav {
 }
 
 nav ul {
+  list-style-type: none; 
   display: flex; 
-  list-style-type: none;
   padding: 0;
-  margin: 0; 
+  margin-right: 10px;
+}
+
+nav ul li:first-child {
+  background-color: blueviolet;
+  color: #333;
 }
 
 nav ul li {
-  margin-right: 20px; 
-}
-nav ul li:first-child a {
-  background-color: white; 
-  color: black; 
-  padding: 5px 10px; 
-  border-radius: 5px; 
-}
-nav ul li:last-child {
-  margin-right: 0; 
+  flex: 1; 
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 40px;
+  display: block; 
+  text-align: center; 
+  padding: 10px; 
 }
 
 nav ul li a:hover {
@@ -58,6 +56,7 @@ nav ul li a:hover {
 .container {
   display: flex;
   flex: 1;
+  overflow-x: hidden; 
 }
 
 .sidebar {
@@ -65,29 +64,25 @@ nav ul li a:hover {
   color: white;
   padding: 10px;
   width: 200px; 
+  overflow-y: auto; 
 }
 
 .content {
   flex: 1;
   padding: 10px;
   overflow-y: auto; 
-  margin-left: 10px; 
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  margin-bottom: 5px;
-}
-
-ul li a {
-  color: white;
+nav ul li a,
+.sidebar ul li a {
+  color: white; 
   text-decoration: none;
+  list-style-type: none; 
 }
 
-ul li a:hover {
+nav ul li a:hover,
+.sidebar ul li a:hover {
   text-decoration: underline;
 }
+
+
