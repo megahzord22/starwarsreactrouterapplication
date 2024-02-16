@@ -128,8 +128,14 @@ export function PeopleItem() {
             <p>Eye Color: {people.eye_color}</p>
             <p>Birth Year: {people.birth_year}</p>
             <p>Gender: {people.gender}</p>
-            <p>Homeworld: {people.homeworld}</p>
-            <p>Films: {people.films.join(', ')}</p>
+            <p>Homeworld: <Link to={people.homeworld}>{people.homeworld}</Link></p>
+            <p>Films:</p>
+            <ul>
+            {people.films.map(item => (
+                        <li key={item}>
+                        <Link to={item}>{item}</Link>
+                    </li>
+                    ))}</ul>
         </>
     )
 }
@@ -140,6 +146,7 @@ export function PlanetItem() {
 
     return (
         <>
+        <h1>debugging</h1>
             <h2>{planet.name}</h2>
             <p>Rotation: {planet.rotation_period}</p>
             <p>Orbit: {planet.orbital_period}</p>
@@ -148,7 +155,13 @@ export function PlanetItem() {
             <p>Gravity: {planet.gravity}</p>
             <p>Terrain: {planet.terrain}</p>
             <p>Population: {planet.population}</p>
-            <p>Residents: {planet.residents.join(', ')}</p>
+            <p>Residents:</p>
+            <ul>
+            {planet.residents.map(item => (
+                        <li key={item}>
+                        <Link to={item}>{item}</Link>
+                    </li>
+                    ))}</ul>
         </>
     )
 }
