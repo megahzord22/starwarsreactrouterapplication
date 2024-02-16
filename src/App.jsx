@@ -13,64 +13,77 @@ import planetsData from './data/planets.json'
 export function Home() {
     return (
         <>
-            <h1>Home</h1>
+            {/* <h1>Home</h1> */}
+            <div className="home">
             <p>Check out information about the people, planets, and films of Star Wars!</p>
             <p><Link to="/people">People</Link></p>
             <p><Link to="/planets">Planets</Link></p>
             <p><Link to="/films">Films</Link></p>
+            </div>
         </>
     )
 }
 
 export function People() {
     return <>
-    <aside>
+    <div className="data">
+    <aside className="side-nav">
         <ul>
-            {Object.keys(peopleData).map(item => (
-                <li key={item}>
-                <NavLink to={`/people/${peopleData[item].name}`}>{peopleData[item].name}</NavLink>
-            </li>
-            ))}
-        </ul>
+                    {Object.keys(peopleData).map(item => (
+                        <li key={item}>
+                        <NavLink to={`/people/${item}`}>{peopleData[item].name}</NavLink>
+                    </li>
+                    ))}
+                </ul>
     </aside>
-    <div><Outlet /></div>
+    </div>
+    <div className="content"><Outlet /></div>
 </>
 }
 
 export function Planets() {
     return <>
-    <aside>
+    <div className="data">
+    <aside className="side-nav">
         <ul>
-            {Object.keys(planetsData).map(item => (
-                <li key={item}>
-                <NavLink to={`/planets/${planetsData[item].name}`}>{planetsData[item].name}</NavLink>
-            </li>
-            ))}
-        </ul>
+                    {Object.keys(planetsData).map(item => (
+                        <li key={item}>
+                        <NavLink to={`/planets/${item}`}>{planetsData[item].name}</NavLink>
+                    </li>
+                    ))}
+                </ul>
     </aside>
-    <div><Outlet /></div>
+    </div>
+    <div className="content"><Outlet /></div>
 </>
 }
 
 export function Films() {
     return  <>
-            <aside>
+    <div className="data">
+            <aside className="side-nav">
                 <ul>
                     {Object.keys(filmsData).map(item => (
                         <li key={item}>
-                        <NavLink to={`/films/${filmsData[item].episode_id}`}>{filmsData[item].title}</NavLink>
+                        <NavLink to={`/films/${item}`}>{filmsData[item].title}</NavLink>
                     </li>
                     ))}
                 </ul>
             </aside>
-            <div><Outlet /></div>
+            <div className="content"><Outlet /></div>
+            </div>
         </>
+        
 }
 
 export function Root(props) {
     const { children } = props
     return (
         <>
+        <div className="heading">
+            <h1>Star Wars</h1>
+        </div>
+        <div className="root-nav">
             <nav>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
@@ -94,6 +107,7 @@ export function Root(props) {
                     Films</NavLink></li>
                 </ul>
             </nav>
+            </div>
             <main>{children || <Outlet />}</main>
         </>
     )
@@ -107,8 +121,15 @@ export function PeopleItem() {
     return (
         <>
             <h2>{people.name}</h2>
-            <p>{people.homeworld}</p>
-            <p>{people.films.join(', ')}</p>
+            <p>Height: {people.height}</p>
+            <p>Mass: {people.mass}</p>
+            <p>Hair Color: {people.hair_color}</p>
+            <p>Skin Color: {people.skin_color}</p>
+            <p>Eye Color: {people.eye_color}</p>
+            <p>Birth Year: {people.birth_year}</p>
+            <p>Gender: {people.gender}</p>
+            <p>Homeworld: {people.homeworld}</p>
+            <p>Films: {people.films.join(', ')}</p>
         </>
     )
 }
@@ -120,7 +141,13 @@ export function PlanetItem() {
     return (
         <>
             <h2>{planet.name}</h2>
+            <p>Rotation: {planet.rotation_period}</p>
+            <p>Orbit: {planet.orbital_period}</p>
+            <p>Diameter: {planet.diameter}</p>
             <p>Climate: {planet.climate}</p>
+            <p>Gravity: {planet.gravity}</p>
+            <p>Terrain: {planet.terrain}</p>
+            <p>Population: {planet.population}</p>
             <p>Residents: {planet.residents.join(', ')}</p>
         </>
     )
@@ -137,8 +164,20 @@ export function FilmItem() {
             <p>Producer: {film.producer}</p>
             <p>Release Date: {film.release_date}</p>
             <p>Opening Crawl: {film.opening_crawl}</p>
-            <p>Characters: {film.characters.join(', ')}</p>
-            <p>Planets: {film.planets.join(', ')}</p>
+            <p>Characters:</p>
+            <ul>
+            {film.characters.map(item => (
+                        <li key={item}>
+                        <Link to={item}>{item}</Link>
+                    </li>
+                    ))}</ul>
+            <p>Planets:</p>
+            <ul>
+            {film.planets.map(item => (
+                        <li key={item}>
+                        <Link to={item}>{item}</Link>
+                    </li>
+                    ))}</ul>
         </>
     )
 }
